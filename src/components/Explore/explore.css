@@ -1,0 +1,41 @@
+.page-wrapper {
+  padding: 2rem 1rem;
+}
+
+.page--title {
+  font-size: 2rem;
+}
+
+.input--searchbar {
+  padding: 0.5rem;
+  font-size: 1rem;
+  width: 32%;
+  background: #f1f1f1;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.btn--search {
+  width: 5%;
+  padding: 0.5rem;
+  background: var(--grey-600);
+  color: white;
+  font-size: 1rem;
+}
+
+.btn--clear {
+  border: transparent;
+  background: white;
+  font-size: 1rem;
+  color: var(--error-dark);
+  margin-left: 0.5rem;
+}
+
+@media screen and (max-width: 576px) {
+  .input--searchbar {
+    width: 68%;
+  }
+  .btn--search {
+    width: 15%;
+  }
+}
