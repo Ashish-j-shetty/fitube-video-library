@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router";
 import { Explore } from "./components/Explore";
 import { Header } from "./components/Header";
 import { History } from "./components/History";
-import { HomePage } from "./components/HomePage";
+//import { HomePage } from "./components/HomePage";
 
 import { LikedVideos } from "./components/LikedVideos";
 import { Playlist } from "./components/Playlist";
