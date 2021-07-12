@@ -1,12 +1,13 @@
 import React from "react";
 import { Route, Routes } from "react-router";
 import { Explore } from "./pages/Explore";
-import { Header } from "./pages/Header";
+import { Header } from "./components/Header";
 import { History } from "./pages/History";
-//import { HomePage } from "./components/HomePage";
 
 import { LikedVideos } from "./pages/LikedVideos";
+import { Login } from "./pages/Login";
 import { Playlist } from "./pages/Playlist";
+import { Signup } from "./pages/Signup";
 import { VideoPlayer } from "./pages/VideoPlayer";
 
 function App() {
@@ -16,6 +17,8 @@ function App() {
       <div>
         <Routes>
           <Route path="/" element={<Explore />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
           <Route path="/:videoId" element={<VideoPlayer />} />
           <Route path="/liked-videos" element={<LikedVideos />} />
           <Route path="/playlist" element={<Playlist />} />

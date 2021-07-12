@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { BASE_URL } from "../../constants/urlConfig";
 import { useVideo } from "../../context/video-context";
 import { SET_VIDEO_LIST } from "../../reducers/actionTypes";
 import { serverRequest } from "../../utils/serverRequest";
@@ -18,10 +19,7 @@ export function Explore() {
       const {
         response: { videos },
         error,
-      } = await serverRequest(
-        "https://fitube-video-library.herokuapp.com/video",
-        "GET"
-      );
+      } = await serverRequest(`${BASE_URL}/video`, "GET");
 
       if (!error) {
         dispatch({ type: SET_VIDEO_LIST, payload: videos });
