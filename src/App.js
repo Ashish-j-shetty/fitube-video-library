@@ -9,6 +9,7 @@ import { Login } from "./pages/Login";
 import { Playlist } from "./pages/Playlist";
 import { Signup } from "./pages/Signup";
 import { VideoPlayer } from "./pages/VideoPlayer";
+import { PrivateRoutes } from "./utils/privateRoutes";
 
 function App() {
   return (
@@ -21,7 +22,7 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/:videoId" element={<VideoPlayer />} />
           <Route path="/liked-videos" element={<LikedVideos />} />
-          <Route path="/playlist" element={<Playlist />} />
+          <PrivateRoutes path="/playlist" element={<Playlist />} />
           <Route path="/history" element={<History />} />
         </Routes>
       </div>

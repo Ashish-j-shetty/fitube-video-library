@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { PlaylistIcon } from "../../assets/icons";
 import { useVideo } from "../../context/video-context";
 import { ADD_NEW_PLAYLIST, TOGGLE_PLAYLIST } from "../../reducers/actionTypes";
 import { isVideoPresentInUserSelection } from "../../utils/videoUtils";
@@ -34,26 +35,13 @@ export const AddToPlayList = ({ id }) => {
 
   return (
     <>
-      {isInPlayList(id) ? (
-        <span
-          className="icon--liked cursor--pointer"
-          onClick={() => setShowModal((modal) => !modal)}
-        >
-          <i
-            className="fa fa-bookmark icon--save  pr-02"
-            aria-hidden="true"
-          ></i>
-          Saved
-        </span>
-      ) : (
-        <span
-          className="cursor--pointer"
-          onClick={() => setShowModal((modal) => !modal)}
-        >
-          <i className="fa fa-bookmark icon--save pr-02" aria-hidden="true"></i>
-          Save
-        </span>
-      )}
+      <span
+        className=" cursor--pointer"
+        onClick={() => setShowModal((modal) => !modal)}
+      >
+        <PlaylistIcon />
+      </span>
+
       {showModal && (
         <div className="modal modal-display">
           <div className="card modal-body modal-background">

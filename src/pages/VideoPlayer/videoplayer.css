@@ -9,9 +9,11 @@
 }
 
 .user--actions {
+  display: flex;
+  gap: 2rem;
   position: absolute;
   top: 1rem;
-  right: 20%;
+  right: 4%;
 }
 
 .icon--liked {
