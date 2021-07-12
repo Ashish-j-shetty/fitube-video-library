@@ -24,7 +24,7 @@ export default function SignUp() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const { success } = await signUp(formData);
+    await signUp(formData);
   };
 
   return (

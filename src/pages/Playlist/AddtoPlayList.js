@@ -30,9 +30,6 @@ export const AddToPlayList = ({ id }) => {
     }
   };
 
-  const isInPlayList = (id) =>
-    playlist.some((list) => list.videos.some((videoId) => videoId === id));
-
   return (
     <>
       <span

@@ -6,7 +6,6 @@ import {
   BookmarkIconFilled,
   ClockIcon,
   ClockIconFilled,
-  ClockIconOutlined,
   HeartIcon,
   HeartIconFilled,
 } from "../../assets/icons";
