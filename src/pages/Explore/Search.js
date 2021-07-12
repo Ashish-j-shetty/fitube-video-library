@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import { useVideo } from "../../context/video-context";
-import { SET_SEARCH_TEXT, CLEAR_SEARCH } from "../../reducers/actionTypes";
+import { useData } from "../../context/video-context";
+//import { SET_SEARCH_TEXT, CLEAR_SEARCH } from "../../reducers/actionTypes";
 import "./explore.css";
 
 export function Search() {
   const [searchText, setSeachText] = useState("");
 
-  const { dispatch } = useVideo();
+  const { dispatch } = useData();
   const handleSearch = (evt) => {
     if (evt.keyCode === 13) {
-      dispatch({ type: SET_SEARCH_TEXT, payload: searchText });
+      //  dispatch({ type: SET_SEARCH_TEXT, payload: searchText });
     }
   };
   return (
@@ -24,7 +24,7 @@ export function Search() {
       />
       <button
         className="btn--search"
-        onClick={() => dispatch({ type: SET_SEARCH_TEXT, payload: searchText })}
+        //  onClick={() => dispatch({ type: SET_SEARCH_TEXT, payload: searchText })}
       >
         <i className="fa fa-search"></i>
       </button>
@@ -33,7 +33,7 @@ export function Search() {
         <button
           className="btn--clear"
           onClick={() => {
-            dispatch({ type: CLEAR_SEARCH });
+            //dispatch({ type: CLEAR_SEARCH });
             setSeachText("");
           }}
         >

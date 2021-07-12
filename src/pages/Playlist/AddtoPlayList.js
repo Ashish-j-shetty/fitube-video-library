@@ -1,15 +1,12 @@
 import { useEffect, useState } from "react";
 import { PlaylistIcon } from "../../assets/icons";
-import { useVideo } from "../../context/video-context";
-import { ADD_NEW_PLAYLIST, TOGGLE_PLAYLIST } from "../../reducers/actionTypes";
+import { useData } from "../../context/video-context";
+import { CREATE_PLAYLIST, TOGGLE_PLAYLIST } from "../../reducers/actionTypes";
 import { isVideoPresentInUserSelection } from "../../utils/videoUtils";
 import "./playlist.css";
 
 export const AddToPlayList = ({ id }) => {
-  const {
-    state: { playlist },
-    dispatch,
-  } = useVideo();
+  const { playlists, dispatch } = useData();
 
   const [showModal, setShowModal] = useState(false);
   const [newList, setListName] = useState("");
@@ -25,7 +22,7 @@ export const AddToPlayList = ({ id }) => {
 
   const createPlaylist = (evt) => {
     if (evt.key === "Enter") {
-      dispatch({ type: ADD_NEW_PLAYLIST, payload: { id, newList } });
+      dispatch({ type: CREATE_PLAYLIST, payload: { id, newList } });
       setListName("");
     }
   };
@@ -45,7 +42,7 @@ export const AddToPlayList = ({ id }) => {
             <h3 className="modal--header">Playlists</h3>
 
             <ul className="playlist--list">
-              {playlist.map(({ listId, name, videos }) => (
+              {playlists.map(({ listId, name, videos }) => (
                 <li key={listId}>
                   <input
                     type="checkbox"
@@ -75,7 +72,7 @@ export const AddToPlayList = ({ id }) => {
                 className="cursor--pointer"
                 onClick={() => {
                   dispatch({
-                    type: ADD_NEW_PLAYLIST,
+                    type: CREATE_PLAYLIST,
                     payload: { id, newList },
                   });
                   setListName("");

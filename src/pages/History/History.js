@@ -1,17 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useVideo } from "../../context/video-context";
-import { REMOVE_FROM_HISTORY } from "../../reducers/actionTypes";
+import { useData } from "../../context/video-context";
+//import { REMOVE_FROM_HISTORY } from "../../reducers/actionTypes";
 import { VideoCardGeneral } from "../Videos";
 
 export function History() {
   const {
     state: { history },
     dispatch,
-  } = useVideo();
+  } = useData();
 
   const removeFromHistory = ({ videoId: id }) => {
-    dispatch({ type: REMOVE_FROM_HISTORY, payload: id });
+    // dispatch({ type: REMOVE_FROM_HISTORY, payload: id });
   };
 
   return (

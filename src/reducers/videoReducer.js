@@ -1,103 +1,93 @@
-import { isVideoPresentInUserSelection } from "../utils/videoUtils";
 import {
-  ADD_NEW_PLAYLIST,
-  ADD_TO_HISTORY,
-  CLEAR_SEARCH,
-  REMOVE_FROM_HISTORY,
-  SET_SEARCH_TEXT,
-  SET_VIDEO_LIST,
-  TOGGLE_LIKE,
+  CLEAR_PLAYLIST,
+  CREATE_PLAYLIST,
+  DELETE_PLAYLIST,
+  INITIALIZE_PLAYLISTS,
+  INITIALIZE_VIDEOS,
   TOGGLE_PLAYLIST,
+  UPDATE_PLAYLIST,
 } from "./actionTypes";
 
 export const initialState = {
-  videoList: [],
-  likedVideos: [],
-  history: [],
-  playlist: [
-    {
-      listId: 1,
-      name: "Watch later",
-      videos: [],
-    },
-  ],
-  searchText: "",
+  videos: [],
+  playlists: [],
 };
 
-export const videoReducer = (state, { type, payload }) => {
-  switch (type) {
-    case SET_VIDEO_LIST:
-      return { ...state, videoList: payload };
+const addToPlaylist = (state, videoId, playlistId) => ({
+  ...state,
 
-    case TOGGLE_LIKE:
+  playlist: state.playlist.map((item) => {
+    return item._id === playlistId
+      ? { ...item, videos: [...item.videos, videoId] }
+      : item;
+  }),
+});
+
+const removeFromPlalist = (state, videoId, playlistId) => ({
+  ...state,
+  playlist: state.playlist.map((item) => {
+    return item._id === playlistId
+      ? { ...item, videos: item.videos.filter((video) => video !== videoId) }
+      : item;
+  }),
+});
+
+export const reducerFunc = (state, { type, payload }) => {
+  switch (type) {
+    case INITIALIZE_VIDEOS:
+      return { ...state, videos: payload };
+
+    case INITIALIZE_PLAYLISTS:
+      return { ...state, playlists: payload };
+
+    case CREATE_PLAYLIST:
       return {
         ...state,
-        likedVideos: isVideoPresentInUserSelection(state.likedVideos, payload)
-          ? state.likedVideos.filter((video) => video !== payload)
-          : state.likedVideos.concat(payload),
+        playlists: [
+          ...state.playlists,
+          {
+            name: payload.playlistName,
+            _id: payload._id,
+            videos: [payload.videId],
+          },
+        ],
       };
-
-    case ADD_NEW_PLAYLIST:
-      if (payload.newList) {
-        return {
-          ...state,
-          playlist: state.playlist.concat({
-            listId: state.playlist.length + 1,
-            name: payload.newList,
-            videos: [payload.id],
-          }),
-        };
-      } else {
-        return { ...state };
-      }
 
     case TOGGLE_PLAYLIST:
-      const list = state.playlist.find(
-        (list) => list.listId === payload.listId
+      const playlist = state.playlists.find(
+        (playlist) => playlist._id === payload.playlistId
       );
-      const isVideo = list.videos.some((videoId) => videoId === payload.id);
 
+      const isInPlaylsit = playlist.videos.find(
+        (video) => video._id === payload.videoId
+      );
+
+      return isInPlaylsit
+        ? removeFromPlalist(state, payload.videoId, payload.playlistId)
+        : addToPlaylist(state, payload.videoId, payload.playlistId);
+
+    case UPDATE_PLAYLIST:
       return {
         ...state,
-        playlist: state.playlist.map((item) =>
-          item.listId === list.listId
-            ? {
-                ...item,
-                videos: isVideo
-                  ? item.videos.filter((videoId) => videoId !== payload.id)
-                  : item.videos.concat(payload.id),
-              }
-            : item
+        playlists: state.playlists.map((item) =>
+          item._id === payload._id ? { ...item, name: payload.name } : item
         ),
       };
-    case ADD_TO_HISTORY:
+
+    case DELETE_PLAYLIST:
       return {
         ...state,
-        history: state.history.some((videoId) => videoId === payload)
-          ? state.history
-              .filter((videoId) => videoId !== payload)
-              .concat(payload)
-          : state.history.concat(payload),
+        playlists: state.playlistId.filter(
+          (item) => item._id === payload.playlistId
+        ),
       };
 
-    case REMOVE_FROM_HISTORY:
+    case CLEAR_PLAYLIST:
       return {
         ...state,
-        history: state.history.filter((videoID) => videoID !== payload),
+        playlists: [],
       };
 
-    case SET_SEARCH_TEXT:
-      return {
-        ...state,
-        searchText: payload,
-      };
-
-    case CLEAR_SEARCH: {
-      return {
-        ...state,
-        searchText: "",
-      };
-    }
     default:
       return state;
   }

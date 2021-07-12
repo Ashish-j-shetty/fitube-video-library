@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
-import { useVideo } from "../../context/video-context";
+import { useData } from "../../context/video-context";
 import { getImage } from "../../utils/videoUtils";
 import "./video.css";
 
 export function VideoCardGeneral({ videoId, remove, listId }) {
   const {
     state: { videoList },
-  } = useVideo();
+  } = useData();
 
   const { title } = videoList.find((video) => video.id === videoId);
 

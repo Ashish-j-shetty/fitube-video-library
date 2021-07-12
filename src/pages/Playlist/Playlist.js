@@ -1,14 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useVideo } from "../../context/video-context";
+import { useData } from "../../context/video-context";
 import { TOGGLE_PLAYLIST } from "../../reducers/actionTypes";
 import { VideoCardGeneral } from "../Videos";
 
 export function Playlist() {
-  const {
-    state: { playlist },
-    dispatch,
-  } = useVideo();
+  const { playlists, dispatch } = useData();
 
   const removeFromPlaylist = ({ videoId: id, listId }) => {
     dispatch({ type: TOGGLE_PLAYLIST, payload: { listId, id } });
@@ -18,7 +15,7 @@ export function Playlist() {
     <React.Fragment>
       <h2 className="text-center">My Playlist</h2>
       <div>
-        {playlist.map(({ listId, name, videos }) => (
+        {playlists.map(({ listId, name, videos }) => (
           <div className="mt-1" key={listId}>
             <span className="playlist--title"> {name} :</span>
             <big>{videos.length}</big>

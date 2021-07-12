@@ -9,8 +9,8 @@ import {
   HeartIcon,
   HeartIconFilled,
 } from "../../assets/icons";
-import { useVideo } from "../../context/video-context";
-import { TOGGLE_LIKE } from "../../reducers/actionTypes";
+import { useData } from "../../context/video-context";
+//import { TOGGLE_LIKE } from "../../reducers/actionTypes";
 import {
   dateFormatter,
   getVideo,
@@ -24,13 +24,13 @@ import "./videoplayer.css";
 export function VideoPlayer() {
   const { videoId } = useParams();
 
-  const {
-    state: { videoList, likedVideos },
-    dispatch,
-  } = useVideo();
+  const { videos } = useData();
 
-  const { title, autor, description, views, date, subscribers } =
-    videoList.find((video) => video.id === videoId);
+  console.log(videos);
+
+  const { title, autor, description, views, date, subscribers } = videos.find(
+    (video) => video.id === videoId
+  );
 
   return (
     <React.Fragment>
@@ -55,27 +55,27 @@ export function VideoPlayer() {
         <div>
           <section className="user--actions">
             <span
-              onClick={() => dispatch({ type: TOGGLE_LIKE, payload: videoId })}
-              className={
-                isVideoPresentInUserSelection(likedVideos, videoId)
-                  ? " icon--liked cursor--pointer "
-                  : " cursor--pointer"
-              }
+            // onClick={() => dispatch({ type: TOGGLE_LIKE, payload: videoId })}
+            // className={
+            //   isVideoPresentInUserSelection(likedVideos, videoId)
+            //     ? " icon--liked cursor--pointer "
+            //     : " cursor--pointer"
+            // }
             >
-              {isVideoPresentInUserSelection(likedVideos, videoId) ? (
+              {/* {isVideoPresentInUserSelection(likedVideos, videoId) ? (
                 <HeartIconFilled />
               ) : (
                 <HeartIcon />
-              )}
+              )} */}
             </span>
 
             <span
-              className={
-                isVideoPresentInUserSelection(likedVideos, videoId)
-                  ? "icon--liked cursor--pointer"
-                  : "cursor--pointer"
-              }
-              onClick={() => dispatch({ type: TOGGLE_LIKE, payload: videoId })}
+            // className={
+            //   isVideoPresentInUserSelection(likedVideos, videoId)
+            //     ? "icon--liked cursor--pointer"
+            //     : "cursor--pointer"
+            // }
+            // onClick={() => dispatch({ type: TOGGLE_LIKE, payload: videoId })}
             >
               <ClockIcon />
               <ClockIconFilled />

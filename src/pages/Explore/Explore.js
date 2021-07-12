@@ -1,33 +1,16 @@
-import React, { useEffect } from "react";
-import { BASE_URL } from "../../constants/urlConfig";
-import { useVideo } from "../../context/video-context";
-import { SET_VIDEO_LIST } from "../../reducers/actionTypes";
-import { serverRequest } from "../../utils/serverRequest";
+import React from "react";
+
+import { useData } from "../../context/video-context";
+
 import { VideoCard } from "../Videos";
 
 import "./explore.css";
 import { getFilteredVideos, Search } from "./Search";
 
 export function Explore() {
-  const {
-    state: { videoList, searchText },
-    dispatch,
-  } = useVideo();
+  const { videos } = useData();
 
-  useEffect(() => {
-    (async () => {
-      const {
-        response: { videos },
-        error,
-      } = await serverRequest(`${BASE_URL}/video`, "GET");
-
-      if (!error) {
-        dispatch({ type: SET_VIDEO_LIST, payload: videos });
-      }
-    })();
-  }, [dispatch]);
-
-  const searchedVideos = getFilteredVideos(videoList, searchText);
+  const searchedVideos = getFilteredVideos(videos, "");
 
   return (
     <main>

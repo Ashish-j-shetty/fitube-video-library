@@ -1,17 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useVideo } from "../../context/video-context";
-import { TOGGLE_LIKE } from "../../reducers/actionTypes";
+import { useData } from "../../context/video-context";
+//import { TOGGLE_LIKE } from "../../reducers/actionTypes";
 import { VideoCardGeneral } from "../Videos";
 
 export function LikedVideos() {
   const {
     state: { likedVideos },
     dispatch,
-  } = useVideo();
+  } = useData();
 
   const toggleLike = ({ videoId: id }) => {
-    dispatch({ type: TOGGLE_LIKE, payload: id });
+    // dispatch({ type: TOGGLE_LIKE, payload: id });
   };
 
   return (
