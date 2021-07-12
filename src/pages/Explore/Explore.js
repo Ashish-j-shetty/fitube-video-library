@@ -18,7 +18,10 @@ export function Explore() {
       const {
         response: { videos },
         error,
-      } = await serverRequest("api/videos", "GET");
+      } = await serverRequest(
+        "https://fitube-video-library.herokuapp.com/video",
+        "GET"
+      );
 
       if (!error) {
         dispatch({ type: SET_VIDEO_LIST, payload: videos });

@@ -1,13 +1,13 @@
 import React from "react";
 import { Route, Routes } from "react-router";
-import { Explore } from "./components/Explore";
-import { Header } from "./components/Header";
-import { History } from "./components/History";
+import { Explore } from "./pages/Explore";
+import { Header } from "./pages/Header";
+import { History } from "./pages/History";
 //import { HomePage } from "./components/HomePage";
 
-import { LikedVideos } from "./components/LikedVideos";
-import { Playlist } from "./components/Playlist";
-import { VideoPlayer } from "./components/VideoPlayer";
+import { LikedVideos } from "./pages/LikedVideos";
+import { Playlist } from "./pages/Playlist";
+import { VideoPlayer } from "./pages/VideoPlayer";
 
 function App() {
   return (

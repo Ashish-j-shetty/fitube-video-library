@@ -10,6 +10,7 @@ export const serverRequest = async (url, requestType) => {
           throw new Error();
         }
       } catch (error) {
+        alert("error");
         return { response: error, error: true };
       }
     default:
