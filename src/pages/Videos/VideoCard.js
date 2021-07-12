@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useData } from "../../context/video-context";
-import { ADD_TO_HISTORY } from "../../reducers/actionTypes";
+//import { ADD_TO_HISTORY } from "../../reducers/actionTypes";
 import { getImage } from "../../utils/videoUtils";
 import "./video.css";
 
 export function VideoCard({ videoId }) {
-  const { videos, dispatch } = useData();
+  const { videos } = useData();
 
   const { title, autor, views } = videos.find((video) => video.id === videoId);
 

@@ -47,7 +47,6 @@ export const AuthProvider = ({ children }) => {
   };
 
   const login = async ({ email, password }) => {
-    console.log({ email, password });
     try {
       const {
         data: { token, user, success, message },

@@ -21,9 +21,9 @@ export function Explore() {
       <Search />
 
       <div className="video--container">
-        {searchedVideos.map((video) => (
-          <VideoCard key={video.id} videoId={video.id} />
-        ))}
+        {searchedVideos.map((video) => {
+          return <VideoCard key={video._id} videoId={video.id} />;
+        })}
       </div>
       {searchedVideos.length === 0 && (
         <h3 className="text-center">No videos found</h3>

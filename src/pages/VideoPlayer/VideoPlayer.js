@@ -26,8 +26,6 @@ export function VideoPlayer() {
 
   const { videos } = useData();
 
-  console.log(videos);
-
   const { title, autor, description, views, date, subscribers } = videos.find(
     (video) => video.id === videoId
   );

@@ -41,6 +41,7 @@ export const reducerFunc = (state, { type, payload }) => {
       return { ...state, playlists: payload };
 
     case CREATE_PLAYLIST:
+      console.log(payload);
       return {
         ...state,
         playlists: [
@@ -48,7 +49,7 @@ export const reducerFunc = (state, { type, payload }) => {
           {
             name: payload.playlistName,
             _id: payload._id,
-            videos: [payload.videId],
+            videos: [payload.videoId],
           },
         ],
       };
