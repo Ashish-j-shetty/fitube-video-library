@@ -2,7 +2,15 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import { PlaylistIcon } from "../../assets/icons";
+import {
+  BookmarkIcon,
+  BookmarkIconFilled,
+  ClockIcon,
+  ClockIconFilled,
+  HeartIcon,
+  HeartIconFilled,
+  PlaylistIcon,
+} from "../../assets/icons";
 import { BASE_URL } from "../../constants/urlConfig";
 import { useAuth } from "../../context/auth-context";
 import { useData } from "../../context/video-context";
@@ -30,6 +38,8 @@ export const AddToPlayList = ({ id }) => {
   }, [showModal]);
 
   const getPlaylistName = (name) => {
+    console.log(playlists?.filter((item) => item.name === name)?.[0]);
+
     return playlists?.filter((item) => item.name === name)?.[0];
   };
 
@@ -64,6 +74,11 @@ export const AddToPlayList = ({ id }) => {
     return playlists?.filter((item) => item._id === playlistId)?.[0];
   };
 
+  const isInPlaylistByName = (playlistName) => {
+    const playlist = getPlaylistName(playlistName);
+    return playlist?.videos.find((item) => item === video._id);
+  };
+
   const isInPlaylist = (playlistId) => {
     const playlist = getPlaylistById(playlistId);
 
@@ -95,12 +110,56 @@ export const AddToPlayList = ({ id }) => {
   return (
     <>
       <span
+        onClick={() => togglePlaylist(getPlaylistName("Liked Videos")._id)}
+        className={
+          isInPlaylistByName("Liked Videos")
+            ? " icon--liked cursor--pointer "
+            : " cursor--pointer"
+        }
+      >
+        {isInPlaylistByName("Liked Videos") ? (
+          <HeartIconFilled />
+        ) : (
+          <HeartIcon />
+        )}
+      </span>
+      <span
+        onClick={() => togglePlaylist(getPlaylistName("Saved Videos")._id)}
+        className={
+          isInPlaylistByName("Saved Videos")
+            ? " icon--liked cursor--pointer "
+            : " cursor--pointer"
+        }
+      >
+        {isInPlaylistByName("Saved Videos") ? (
+          <BookmarkIconFilled />
+        ) : (
+          <BookmarkIcon />
+        )}
+      </span>
+
+      <span
+        onClick={() =>
+          togglePlaylist(getPlaylistName("Watch Later Videos")._id)
+        }
+        className={
+          isInPlaylistByName("Watch Later Videos")
+            ? " icon--liked cursor--pointer "
+            : " cursor--pointer"
+        }
+      >
+        {isInPlaylistByName("Watch Later Videos") ? (
+          <ClockIconFilled />
+        ) : (
+          <ClockIcon />
+        )}
+      </span>
+      <span
         className=" cursor--pointer"
         onClick={() => setShowModal((modal) => !modal)}
       >
         <PlaylistIcon />
       </span>
-
       {showModal && (
         <div className="modal modal-display">
           <div className="card modal-body modal-background">

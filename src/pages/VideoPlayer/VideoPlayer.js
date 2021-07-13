@@ -1,21 +1,10 @@
 import React from "react";
 import ReactPlayer from "react-player";
 import { useParams } from "react-router";
-import {
-  BookmarkIcon,
-  BookmarkIconFilled,
-  ClockIcon,
-  ClockIconFilled,
-  HeartIcon,
-  HeartIconFilled,
-} from "../../assets/icons";
+
 import { useData } from "../../context/video-context";
-//import { TOGGLE_LIKE } from "../../reducers/actionTypes";
-import {
-  dateFormatter,
-  getVideo,
-  isVideoPresentInUserSelection,
-} from "../../utils/videoUtils";
+
+import { dateFormatter, getVideo } from "../../utils/videoUtils";
 
 import { AddToPlayList } from "../Playlist/AddtoPlayList";
 
@@ -52,39 +41,6 @@ export function VideoPlayer() {
 
         <div>
           <section className="user--actions">
-            <span
-            // onClick={() => dispatch({ type: TOGGLE_LIKE, payload: videoId })}
-            // className={
-            //   isVideoPresentInUserSelection(likedVideos, videoId)
-            //     ? " icon--liked cursor--pointer "
-            //     : " cursor--pointer"
-            // }
-            >
-              {/* {isVideoPresentInUserSelection(likedVideos, videoId) ? (
-                <HeartIconFilled />
-              ) : (
-                <HeartIcon />
-              )} */}
-            </span>
-
-            <span
-            // className={
-            //   isVideoPresentInUserSelection(likedVideos, videoId)
-            //     ? "icon--liked cursor--pointer"
-            //     : "cursor--pointer"
-            // }
-            // onClick={() => dispatch({ type: TOGGLE_LIKE, payload: videoId })}
-            >
-              <ClockIcon />
-              <ClockIconFilled />
-            </span>
-
-            <span>
-              <BookmarkIcon />
-
-              <BookmarkIconFilled />
-            </span>
-
             <AddToPlayList id={videoId} />
           </section>
 
