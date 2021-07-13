@@ -38,8 +38,6 @@ export const AddToPlayList = ({ id }) => {
   }, [showModal]);
 
   const getPlaylistName = (name) => {
-    console.log(playlists?.filter((item) => item.name === name)?.[0]);
-
     return playlists?.filter((item) => item.name === name)?.[0];
   };
 
