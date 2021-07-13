@@ -16,21 +16,23 @@ export const initialState = {
 const addToPlaylist = (state, videoId, playlistId) => ({
   ...state,
 
-  playlist: state.playlist.map((item) => {
+  playlists: state.playlists.map((item) => {
     return item._id === playlistId
       ? { ...item, videos: [...item.videos, videoId] }
       : item;
   }),
 });
 
-const removeFromPlalist = (state, videoId, playlistId) => ({
-  ...state,
-  playlist: state.playlist.map((item) => {
-    return item._id === playlistId
-      ? { ...item, videos: item.videos.filter((video) => video !== videoId) }
-      : item;
-  }),
-});
+const removeFromPlalist = (state, videoId, playlistId) => {
+  return {
+    ...state,
+    playlists: state.playlists.map((item) => {
+      return item._id === playlistId
+        ? { ...item, videos: item.videos.filter((video) => video !== videoId) }
+        : item;
+    }),
+  };
+};
 
 export const reducerFunc = (state, { type, payload }) => {
   switch (type) {
@@ -41,7 +43,6 @@ export const reducerFunc = (state, { type, payload }) => {
       return { ...state, playlists: payload };
 
     case CREATE_PLAYLIST:
-      console.log(payload);
       return {
         ...state,
         playlists: [
@@ -55,12 +56,12 @@ export const reducerFunc = (state, { type, payload }) => {
       };
 
     case TOGGLE_PLAYLIST:
-      const playlist = state.playlists.find(
+      const currentPlaylist = state.playlists.find(
         (playlist) => playlist._id === payload.playlistId
       );
 
-      const isInPlaylsit = playlist.videos.find(
-        (video) => video._id === payload.videoId
+      const isInPlaylsit = currentPlaylist.videos.find(
+        (video) => video === payload.videoId
       );
 
       return isInPlaylsit

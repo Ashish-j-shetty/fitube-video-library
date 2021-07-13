@@ -1,16 +1,21 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+
 import { PlaylistIcon } from "../../assets/icons";
 import { BASE_URL } from "../../constants/urlConfig";
 import { useAuth } from "../../context/auth-context";
 import { useData } from "../../context/video-context";
 import { CREATE_PLAYLIST, TOGGLE_PLAYLIST } from "../../reducers/actionTypes";
-import { isVideoPresentInUserSelection } from "../../utils/videoUtils";
+
 import "./playlist.css";
 
 export const AddToPlayList = ({ id }) => {
   const { videos, playlists, dispatch } = useData();
   const { user } = useAuth();
+
+  const navigate = useNavigate();
+  const pathname = useLocation();
 
   const [showModal, setShowModal] = useState(false);
   const [newList, setListName] = useState("");
@@ -61,10 +66,31 @@ export const AddToPlayList = ({ id }) => {
 
   const isInPlaylist = (playlistId) => {
     const playlist = getPlaylistById(playlistId);
-    return playlist?.videos.find((item) => item === video._id);
+
+    const result = playlist?.videos.find((item) => item === video._id);
+
+    return result ? true : false;
   };
 
-  const togglePlaylist = (playlistId) => {};
+  const togglePlaylist = async (playlistId) => {
+    if (!user) {
+      navigate("/login", { state: { from: pathname } });
+    }
+
+    try {
+      const { data } = await axios.post(`${BASE_URL}/playlists/${playlistId}`, {
+        videoId: video._id,
+      });
+      if (data.success) {
+        dispatch({
+          type: TOGGLE_PLAYLIST,
+          payload: { videoId: video._id, playlistId: playlistId },
+        });
+      }
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
 
   return (
     <>

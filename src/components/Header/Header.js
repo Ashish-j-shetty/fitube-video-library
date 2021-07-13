@@ -21,7 +21,7 @@ export function Header() {
       <NavLink to="/" className="logo">
         FitTube
       </NavLink>
-      <div>
+      <div className="desktop--menu">
         <ul className="flex flex-center">
           <NavLink className="header_nav__link " to="/">
             Home

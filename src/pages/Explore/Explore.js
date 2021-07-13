@@ -1,4 +1,5 @@
 import React from "react";
+import SkeletonVideo from "../../components/Skeleton/SkeletonVideo";
 
 import { useData } from "../../context/video-context";
 
@@ -26,7 +27,11 @@ export function Explore() {
         })}
       </div>
       {searchedVideos.length === 0 && (
-        <h3 className="text-center">No videos found</h3>
+        <div className="video--container">
+          {[...Array(8)].map((_, i) => (
+            <SkeletonVideo key={i} />
+          ))}
+        </div>
       )}
     </main>
   );
