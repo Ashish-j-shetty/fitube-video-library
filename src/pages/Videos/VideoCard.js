@@ -6,6 +6,7 @@ import { getImage } from "../../utils/videoUtils";
 import "./video.css";
 
 export function VideoCard({ videoId }) {
+  console.log("videoId", videoId);
   const { videos } = useData();
 
   const { title, autor, views } = videos.find((video) => video.id === videoId);

@@ -2,8 +2,6 @@ import React, { useEffect } from "react";
 import { Route, Routes } from "react-router";
 import { Explore } from "./pages/Explore";
 import { Header } from "./components/Header";
-import { History } from "./pages/History";
-import { LikedVideos } from "./pages/LikedVideos";
 import { Login } from "./pages/Login";
 import { Playlist } from "./pages/Playlist";
 import { Signup } from "./pages/Signup";
@@ -17,6 +15,7 @@ import {
   INITIALIZE_PLAYLISTS,
   INITIALIZE_VIDEOS,
 } from "./reducers/actionTypes";
+import { PlaylistDetails } from "./pages/PlaylistDetails";
 
 function App() {
   const { dispatch } = useData();
@@ -61,9 +60,11 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/:videoId" element={<VideoPlayer />} />
-          <Route path="/liked-videos" element={<LikedVideos />} />
           <PrivateRoutes path="/playlist" element={<Playlist />} />
-          <Route path="/history" element={<History />} />
+          <PrivateRoutes
+            path="/playlist/:playlistId"
+            element={<PlaylistDetails />}
+          />
         </Routes>
       </div>
     </React.Fragment>
