@@ -19,9 +19,6 @@ export default function PlaylistDetails() {
   if (playlists.length > 0) {
     playlist = playlists.find((item) => item._id === playlistId);
 
-    console.log("playlist", playlists);
-    console.log("playlistId", playlistId);
-
     playlistOldName = playlist.name;
   }
 
