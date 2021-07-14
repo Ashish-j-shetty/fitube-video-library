@@ -9,9 +9,9 @@ import "./explore.css";
 import { getFilteredVideos, Search } from "./Search";
 
 export function Explore() {
-  const { videos } = useData();
+  const { videos, searchValue } = useData();
 
-  const searchedVideos = getFilteredVideos(videos, "");
+  const searchedVideos = getFilteredVideos(videos, searchValue);
 
   return (
     <main>
@@ -26,11 +26,16 @@ export function Explore() {
           return <VideoCard key={video._id} videoId={video.id} />;
         })}
       </div>
-      {searchedVideos.length === 0 && (
+      {searchedVideos.length === 0 && !searchValue && (
         <div className="video--container">
           {[...Array(8)].map((_, i) => (
             <SkeletonVideo key={i} />
           ))}
+        </div>
+      )}
+      {searchedVideos.length === 0 && searchValue && (
+        <div className="video--container">
+          <h3>No result found</h3>
         </div>
       )}
     </main>

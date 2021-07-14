@@ -4,6 +4,7 @@ import { Explore } from "./pages/Explore";
 import { Header } from "./components/Header";
 import { Login } from "./pages/Login";
 import { Playlist } from "./pages/Playlist";
+import { Account } from "./pages/Account";
 import { Signup } from "./pages/Signup";
 import { VideoPlayer } from "./pages/VideoPlayer";
 import { PrivateRoutes } from "./utils/privateRoutes";
@@ -16,7 +17,6 @@ import {
   INITIALIZE_VIDEOS,
 } from "./reducers/actionTypes";
 import { PlaylistDetails } from "./pages/PlaylistDetails";
-import Account from "./pages/Account/Account";
 
 function App() {
   const { dispatch } = useData();

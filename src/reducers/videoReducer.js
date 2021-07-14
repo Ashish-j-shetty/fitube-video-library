@@ -1,9 +1,11 @@
 import {
   CLEAR_PLAYLIST,
+  CLEAR_SEARCH,
   CREATE_PLAYLIST,
   DELETE_PLAYLIST,
   INITIALIZE_PLAYLISTS,
   INITIALIZE_VIDEOS,
+  SEARCH_VIDOES,
   TOGGLE_PLAYLIST,
   UPDATE_PLAYLIST,
 } from "./actionTypes";
@@ -11,6 +13,7 @@ import {
 export const initialState = {
   videos: [],
   playlists: [],
+  searchValue: null,
 };
 
 const addToPlaylist = (state, videoId, playlistId) => ({
@@ -88,6 +91,17 @@ export const reducerFunc = (state, { type, payload }) => {
       return {
         ...state,
         playlists: [],
+      };
+
+    case SEARCH_VIDOES:
+      return {
+        ...state,
+        searchValue: payload.toLowerCase(),
+      };
+    case CLEAR_SEARCH:
+      return {
+        ...state,
+        searchValue: null,
       };
 
     default:

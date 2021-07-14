@@ -1,17 +1,19 @@
 import React, { useState } from "react";
 import { useData } from "../../context/video-context";
-//import { SET_SEARCH_TEXT, CLEAR_SEARCH } from "../../reducers/actionTypes";
+import { CLEAR_SEARCH, SEARCH_VIDOES } from "../../reducers/actionTypes";
 import "./explore.css";
 
 export function Search() {
-  const [searchText, setSeachText] = useState("");
+  const { dispatch, searchValue } = useData();
 
-  const { dispatch } = useData();
+  const [searchText, setSeachText] = useState(searchValue ? searchValue : "");
+
   const handleSearch = (evt) => {
     if (evt.keyCode === 13) {
-      //  dispatch({ type: SET_SEARCH_TEXT, payload: searchText });
+      dispatch({ type: SEARCH_VIDOES, payload: searchText });
     }
   };
+
   return (
     <div className="flex flex-center">
       <input
@@ -24,7 +26,7 @@ export function Search() {
       />
       <button
         className="btn--search"
-        //  onClick={() => dispatch({ type: SET_SEARCH_TEXT, payload: searchText })}
+        onClick={() => dispatch({ type: SEARCH_VIDOES, payload: searchText })}
       >
         <i className="fa fa-search"></i>
       </button>
@@ -33,7 +35,7 @@ export function Search() {
         <button
           className="btn--clear"
           onClick={() => {
-            //dispatch({ type: CLEAR_SEARCH });
+            dispatch({ type: CLEAR_SEARCH });
             setSeachText("");
           }}
         >
@@ -45,6 +47,10 @@ export function Search() {
 }
 
 export const getFilteredVideos = (videoList, searchText) => {
+  if (!searchText) {
+    return videoList;
+  }
+
   return videoList.filter(
     (video) =>
       video.title.toLowerCase().includes(searchText) ||

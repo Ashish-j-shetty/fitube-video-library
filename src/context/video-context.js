@@ -12,6 +12,7 @@ export function VideoProvider({ children }) {
         videos: state.videos,
         playlists: state.playlists,
         users: state.users,
+        searchValue: state.searchValue,
         dispatch,
       }}
     >
