@@ -11,6 +11,7 @@ import { AddToPlayList } from "../Playlist/AddtoPlayList";
 import "./videoplayer.css";
 
 export function VideoPlayer() {
+  alert("here");
   const { videoId } = useParams();
 
   const { videos } = useData();

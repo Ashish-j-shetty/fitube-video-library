@@ -1,23 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useData } from "../../context/video-context";
-//import { ADD_TO_HISTORY } from "../../reducers/actionTypes";
+
 import { getImage } from "../../utils/videoUtils";
 import "./video.css";
 
 export function VideoCard({ videoId }) {
-  console.log("videoId", videoId);
   const { videos } = useData();
 
   const { title, autor, views } = videos.find((video) => video.id === videoId);
 
   return (
     <div className="card">
-      <Link
-        className="link"
-        // onClick={() => dispatch({ type: ADD_TO_HISTORY, payload: videoId })}
-        to={`/${videoId}`}
-      >
+      <Link className="link" to={`/${videoId}`}>
         <img
           className="video-thumbnail"
           src={getImage(videoId)}

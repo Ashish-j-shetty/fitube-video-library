@@ -79,8 +79,8 @@ export const reducerFunc = (state, { type, payload }) => {
     case DELETE_PLAYLIST:
       return {
         ...state,
-        playlists: state.playlistId.filter(
-          (item) => item._id === payload.playlistId
+        playlists: state.playlists.filter(
+          (item) => item._id !== payload.playlistId
         ),
       };
 

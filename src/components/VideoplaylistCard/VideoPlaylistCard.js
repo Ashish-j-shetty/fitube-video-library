@@ -6,9 +6,12 @@ import { getImage } from "../../utils/videoUtils";
 export default function VideoPlaylistCard({ videoId }) {
   const { videos } = useData();
 
-  const video = videos.find((video) => video._id === videoId);
-
-  const { id } = video;
+  let video;
+  let id;
+  if (videos.length > 0) {
+    video = videos.find((video) => video._id === videoId);
+    id = video.id;
+  }
 
   return video ? (
     <Link className="link" to={`/${videoId}`}>
