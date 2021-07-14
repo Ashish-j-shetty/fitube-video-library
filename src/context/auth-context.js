@@ -73,8 +73,21 @@ export const AuthProvider = ({ children }) => {
     localStorage?.removeItem("authToken");
   };
 
+  const updateUser = async ({ id, name, email, password }) => {
+    const response = await axios.post(`${BASE_URL}/user/account`, {
+      name,
+      email,
+      password,
+      id,
+    });
+    if (response.data.success) {
+      setUser(response.data.user);
+      localStorage?.setItem("authUser", JSON.stringify(response.data.user));
+    }
+  };
+
   return (
-    <AuthContext.Provider value={{ login, signUp, user, logout }}>
+    <AuthContext.Provider value={{ login, signUp, user, logout, updateUser }}>
       {children}
     </AuthContext.Provider>
   );

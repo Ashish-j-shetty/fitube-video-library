@@ -16,6 +16,7 @@ import {
   INITIALIZE_VIDEOS,
 } from "./reducers/actionTypes";
 import { PlaylistDetails } from "./pages/PlaylistDetails";
+import Account from "./pages/Account/Account";
 
 function App() {
   const { dispatch } = useData();
@@ -65,6 +66,7 @@ function App() {
             path="/playlist/:playlistId"
             element={<PlaylistDetails />}
           />
+          <PrivateRoutes path="/account" element={<Account />} />
         </Routes>
       </div>
     </React.Fragment>

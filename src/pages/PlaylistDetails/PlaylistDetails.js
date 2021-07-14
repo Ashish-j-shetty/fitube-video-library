@@ -14,9 +14,16 @@ export default function PlaylistDetails() {
 
   const navigate = useNavigate();
 
-  const playlist = playlists.find((item) => item._id === playlistId);
+  let playlist;
+  let playlistOldName;
+  if (playlists.length > 0) {
+    playlist = playlists.find((item) => item._id === playlistId);
 
-  const playlistOldName = playlist.name;
+    console.log("playlist", playlists);
+    console.log("playlistId", playlistId);
+
+    playlistOldName = playlist.name;
+  }
 
   const isDefaultPlaylist = [
     "Saved Videos",
@@ -87,10 +94,10 @@ export default function PlaylistDetails() {
       )}
 
       <div>
-        {playlist?.videos.length !== 0 ? (
+        {videos && playlist?.videos.length !== 0 ? (
           playlist?.videos?.map((video) => {
-            const { id } = videos.find((item) => video === item._id);
-            return <VideoCard videoId={id} />;
+            const { id } = videos?.find((item) => video === item._id);
+            return <VideoCard key={id} videoId={id} />;
           })
         ) : (
           <h2>no video in playlist</h2>
