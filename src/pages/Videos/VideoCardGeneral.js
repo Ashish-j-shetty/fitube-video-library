@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import VideoPlaylistCard from "../../components/VideoplaylistCard/VideoPlaylistCard";
 
 import "./video.css";
-import { VideoCard } from "./VideoCard";
 
 export function VideoCardGeneral({ playlist }) {
   return (
