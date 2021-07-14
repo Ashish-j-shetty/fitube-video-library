@@ -1,9 +1,11 @@
 .video--container {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-column-gap: 1rem;
-  grid-row-gap: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
   padding: 0.5rem;
+  margin: auto;
 }
 
 .video-thumbnail {
@@ -43,22 +45,4 @@
 
 .btn--cross:hover {
   color: var(--error-dark);
-}
-
-@media screen and (max-width: 1200px) {
-  .video--container {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-}
-
-@media screen and (max-width: 1000px) {
-  .video--container {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-@media screen and (max-width: 660px) {
-  .video--container {
-    grid-template-columns: 1fr;
-  }
 }

@@ -28,8 +28,16 @@
   display: flex;
 }
 
-@media screen and(max-width:640px) {
+.mobile__nav {
+  display: none;
+}
+
+@media screen and(max-width : 640px) {
   .desktop--menu {
     display: none;
+  }
+
+  .mobile__nav {
+    display: block;
   }
 }

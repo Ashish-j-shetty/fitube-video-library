@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { HamburgerIcon } from "../../assets/icons";
 import { useAuth } from "../../context/auth-context";
 import "./header.css";
 
@@ -17,26 +18,32 @@ export function Header() {
     }
   }
   return (
-    <nav className="nav">
-      <NavLink to="/" className="logo">
-        FitTube
-      </NavLink>
-      <div className="desktop--menu">
-        <ul className="flex flex-center">
-          <NavLink className="header_nav__link " to="/">
-            Home
-          </NavLink>
-          <NavLink className="header_nav__link" to="/playlist">
-            Playlist
-          </NavLink>
-          <NavLink className="header_nav__link" to="/account">
-            Account
-          </NavLink>
-          <span className="header_nav__link " onClick={authBtnHandler}>
-            {user ? "Logout" : "Login"}
-          </span>
-        </ul>
+    <>
+      <nav className="nav">
+        <NavLink to="/" className="logo">
+          FitTube
+        </NavLink>
+        <div className="desktop--menu">
+          <ul className="flex flex-center">
+            <NavLink className="header_nav__link " to="/">
+              Home
+            </NavLink>
+            <NavLink className="header_nav__link" to="/playlist">
+              Playlist
+            </NavLink>
+            <NavLink className="header_nav__link" to="/account">
+              Account
+            </NavLink>
+            <span className="header_nav__link " onClick={authBtnHandler}>
+              {user ? "Logout" : "Login"}
+            </span>
+          </ul>
+        </div>
+      </nav>
+      <div className="mobile__nav">
+        <HamburgerIcon />
+        Menu
       </div>
-    </nav>
+    </>
   );
 }
