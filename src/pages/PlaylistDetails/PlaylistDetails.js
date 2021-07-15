@@ -70,29 +70,31 @@ export default function PlaylistDetails() {
   return playlist ? (
     <div>
       <div className="flex">
-        <input
-          readOnly={!isEdit}
-          className="edit__playlist"
-          ref={playlistNameElement}
-          value={playlistName}
-          onChange={(e) => setPlaylistName(e.target.value)}
-        />
-      </div>
-      {!isDefaultPlaylist && (
-        <div>
-          <button onClick={() => editHandler()}>
-            {isEdit ? <CheckIcon /> : <PencilIcon />}
-          </button>
+        <div className="flex flex__basis-75">
+          <input
+            readOnly={!isEdit}
+            className="edit__playlist"
+            ref={playlistNameElement}
+            value={playlistName}
+            onChange={(e) => setPlaylistName(e.target.value)}
+          />
         </div>
-      )}
-      {!isDefaultPlaylist && (
-        <div>
-          <button onClick={() => deletePlaylist()}>
-            <DeleteIcon />
-          </button>
-        </div>
-      )}
 
+        {!isDefaultPlaylist && (
+          <div className="flex">
+            <button className="btn__user--action" onClick={() => editHandler()}>
+              {isEdit ? <CheckIcon /> : <PencilIcon />}
+            </button>
+
+            <button
+              className="btn__user--action"
+              onClick={() => deletePlaylist()}
+            >
+              <DeleteIcon />
+            </button>
+          </div>
+        )}
+      </div>
       <div className="playlist__list--container playlist_details">
         {videos && playlist?.videos.length !== 0 ? (
           playlist?.videos?.map((video) => {

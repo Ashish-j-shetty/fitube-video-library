@@ -8,8 +8,6 @@ import "./video.css";
 export function VideoCard({ videoId }) {
   const { videos } = useData();
 
-  console.log({ videoId });
-
   const { title, autor, views } = videos.find((video) => video.id === videoId);
 
   return (

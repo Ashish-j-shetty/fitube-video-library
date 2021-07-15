@@ -1,1 +1,8 @@
 @import url("https://fitstrap.netlify.app/lib/styles.css");
+
+.btn__user--action {
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: none;
+}

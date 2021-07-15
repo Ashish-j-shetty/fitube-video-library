@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { PencilIcon } from "../../assets/icons";
+import { LaunchIcon } from "../../assets/icons";
 import VideoPlaylistCard from "../../components/VideoplaylistCard/VideoPlaylistCard";
 
 import "./video.css";
@@ -17,7 +17,7 @@ export function VideoCardGeneral({ playlist }) {
         <div>
           <Link to={`/playlist/${playlist._id}`}>
             <span>
-              <PencilIcon />
+              <LaunchIcon />
             </span>
           </Link>
         </div>

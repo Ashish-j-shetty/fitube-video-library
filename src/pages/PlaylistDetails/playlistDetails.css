@@ -2,11 +2,15 @@
   width: 100%;
   padding: 1rem;
   border: 0;
-  background-color: var(--grey-100);
-  font-size: 1.25rem;
-  margin: 1rem;
+  font-size: 2rem;
+  margin: 1rem 0.3rem;
+  color: var(--grey-600);
+  font-weight: bold;
 }
 
 .playlist_details {
   margin-left: 1rem;
+}
+.flex__basis-75 {
+  flex-basis: 75%;
 }

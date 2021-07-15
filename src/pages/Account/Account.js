@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { CheckIcon, PencilIcon } from "../../assets/icons";
+
 import { useAuth } from "../../context/auth-context";
 
 export default function Account() {
@@ -18,6 +18,7 @@ export default function Account() {
   };
 
   const editHandler = async (e) => {
+    e.preventDefault();
     if (isEdit) {
       await updateUser({ ...formData, id: user.userId });
       editName.current.blur();
@@ -33,11 +34,11 @@ export default function Account() {
   return (
     <div>
       <div className="login--container">
-        <div>
-          <h3>My Account</h3>
-          <button onClick={editHandler}>
-            {isEdit ? <CheckIcon /> : <PencilIcon />}
-          </button>
+        <div className="flex">
+          <div className="flex">
+            <h3>My Account</h3>
+          </div>
+          <div className="flex"></div>
         </div>
         <form className="login--form">
           <input
@@ -65,6 +66,9 @@ export default function Account() {
             name="password"
             onChange={onChangeHandler}
           />
+          <button className="btn--login" onClick={editHandler}>
+            {isEdit ? "Save" : "Edit"}
+          </button>
         </form>
       </div>
     </div>
