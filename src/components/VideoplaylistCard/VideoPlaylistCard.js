@@ -14,17 +14,19 @@ export default function VideoPlaylistCard({ videoId }) {
   }
 
   return video ? (
-    <Link className="link" to={`/${videoId}`}>
-      <img
-        className="video-thumbnail"
-        src={getImage(id)}
-        alt="video-thumbnail"
-      />
-      <div className="video--title">{video.title}</div>
-      <div className="video__card--description">
-        <span className="video--channel"> {video.autor} </span>
-      </div>
-    </Link>
+    <div>
+      <Link className="link" to={`/${id}`}>
+        <img
+          className="video-thumbnail playlist__thumbnail"
+          src={getImage(id)}
+          alt="video-thumbnail"
+        />
+        <div className="video--title playlist__video__title">{video.title}</div>
+        <div className="video__card--description">
+          <span className="video--channel"> {video.autor} </span>
+        </div>
+      </Link>
+    </div>
   ) : (
     <></>
   );

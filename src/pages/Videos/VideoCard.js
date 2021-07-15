@@ -8,13 +8,15 @@ import "./video.css";
 export function VideoCard({ videoId }) {
   const { videos } = useData();
 
+  console.log({ videoId });
+
   const { title, autor, views } = videos.find((video) => video.id === videoId);
 
   return (
     <div className="card">
       <Link className="link" to={`/${videoId}`}>
         <img
-          className="video-thumbnail"
+          className="video-thumbnail "
           src={getImage(videoId)}
           alt="video-thumbnail"
         />

@@ -8,6 +8,8 @@ import { useData } from "../../context/video-context";
 import { DELETE_PLAYLIST, UPDATE_PLAYLIST } from "../../reducers/actionTypes";
 import { VideoCard } from "../Videos";
 
+import "./playlistDetails.css";
+
 export default function PlaylistDetails() {
   const { playlistId } = useParams();
   const { playlists, videos, dispatch } = useData();
@@ -67,9 +69,10 @@ export default function PlaylistDetails() {
 
   return playlist ? (
     <div>
-      <div>
+      <div className="flex">
         <input
           readOnly={!isEdit}
+          className="edit__playlist"
           ref={playlistNameElement}
           value={playlistName}
           onChange={(e) => setPlaylistName(e.target.value)}
@@ -90,10 +93,11 @@ export default function PlaylistDetails() {
         </div>
       )}
 
-      <div>
+      <div className="playlist__list--container playlist_details">
         {videos && playlist?.videos.length !== 0 ? (
           playlist?.videos?.map((video) => {
             const { id } = videos?.find((item) => video === item._id);
+
             return <VideoCard key={id} videoId={id} />;
           })
         ) : (

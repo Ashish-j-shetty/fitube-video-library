@@ -28,7 +28,13 @@
   background-color: var(--grey-600);
 }
 
-.playlist--list {
+.playlists {
+  background-color: var(--grey-100);
+  padding: 1rem;
+  margin: 1rem 0;
+}
+
+.playlist--title .playlist--list {
   list-style: none;
   color: white;
 }
@@ -57,7 +63,9 @@
 .playlist--title {
   font-weight: 600;
   font-size: 1.2rem;
+  margin: 0.125rem;
 }
+
 @media screen and (max-width: 576px) {
   .modal-body {
     padding: 3rem 0.5rem;

@@ -1,0 +1,12 @@
+.edit__playlist {
+  width: 100%;
+  padding: 1rem;
+  border: 0;
+  background-color: var(--grey-100);
+  font-size: 1.25rem;
+  margin: 1rem;
+}
+
+.playlist_details {
+  margin-left: 1rem;
+}

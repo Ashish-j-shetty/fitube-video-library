@@ -8,10 +8,13 @@ export function Playlist() {
   const { playlists } = useData();
 
   return (
-    <div className="container">
+    <div className="playlist--container">
       <h1>Playlists</h1>
+
       {playlists.map((item) => (
-        <VideoCardGeneral key={item._id} playlist={item} />
+        <div className="playlists" key={item._id}>
+          <VideoCardGeneral key={item._id} playlist={item} />
+        </div>
       ))}
     </div>
   );
