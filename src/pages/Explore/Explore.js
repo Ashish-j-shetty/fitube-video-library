@@ -15,12 +15,7 @@ export function Explore() {
 
   return (
     <main>
-      <div className="page-wrapper">
-        <span className="page--title">EXPLORE</span>
-      </div>
-
       <Search />
-
       <div className="video--container">
         {searchedVideos.map((video) => {
           return <VideoCard key={video._id} videoId={video.id} />;

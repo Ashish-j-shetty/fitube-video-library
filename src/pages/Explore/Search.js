@@ -15,7 +15,7 @@ export function Search() {
   };
 
   return (
-    <div className="flex flex-center">
+    <div className="flex flex-center margin-top-4">
       <input
         type="text"
         placeholder="search videos"
