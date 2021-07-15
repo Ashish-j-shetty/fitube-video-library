@@ -60,6 +60,11 @@
   cursor: pointer;
 }
 
+.playlist--list {
+  color: white;
+  list-style: none;
+}
+
 .playlist--title {
   font-weight: 600;
   font-size: 1.2rem;

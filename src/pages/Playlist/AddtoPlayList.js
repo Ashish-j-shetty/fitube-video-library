@@ -23,7 +23,7 @@ export const AddToPlayList = ({ id }) => {
   const { user } = useAuth();
 
   const navigate = useNavigate();
-  const pathname = useLocation();
+  const { pathname } = useLocation();
 
   const [showModal, setShowModal] = useState(false);
   const [newList, setListName] = useState("");
@@ -108,7 +108,11 @@ export const AddToPlayList = ({ id }) => {
   return (
     <>
       <span
-        onClick={() => togglePlaylist(getPlaylistName("Liked Videos")._id)}
+        onClick={() =>
+          user
+            ? togglePlaylist(getPlaylistName("Liked Videos")._id)
+            : navigate("/login", { state: { from: pathname } })
+        }
         className={
           isInPlaylistByName("Liked Videos")
             ? " icon--liked cursor--pointer "
@@ -122,7 +126,11 @@ export const AddToPlayList = ({ id }) => {
         )}
       </span>
       <span
-        onClick={() => togglePlaylist(getPlaylistName("Saved Videos")._id)}
+        onClick={() =>
+          user
+            ? togglePlaylist(getPlaylistName("Saved Videos")._id)
+            : navigate("/login", { state: { from: pathname } })
+        }
         className={
           isInPlaylistByName("Saved Videos")
             ? " icon--liked cursor--pointer "
@@ -138,7 +146,9 @@ export const AddToPlayList = ({ id }) => {
 
       <span
         onClick={() =>
-          togglePlaylist(getPlaylistName("Watch Later Videos")._id)
+          user
+            ? togglePlaylist(getPlaylistName("Watch Later Videos")._id)
+            : navigate("/login", { state: { from: pathname } })
         }
         className={
           isInPlaylistByName("Watch Later Videos")
@@ -154,7 +164,11 @@ export const AddToPlayList = ({ id }) => {
       </span>
       <span
         className=" cursor--pointer"
-        onClick={() => setShowModal((modal) => !modal)}
+        onClick={() =>
+          user
+            ? setShowModal((modal) => !modal)
+            : navigate("/login", { state: { from: pathname } })
+        }
       >
         <PlaylistIcon />
       </span>

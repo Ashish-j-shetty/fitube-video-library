@@ -20,7 +20,7 @@ import { PlaylistDetails } from "./pages/PlaylistDetails";
 
 function App() {
   const { dispatch } = useData();
-  const { user } = useAuth();
+  const { user, token } = useAuth();
 
   useEffect(() => {
     (async function () {
@@ -36,7 +36,7 @@ function App() {
   }, [dispatch]);
 
   useEffect(() => {
-    user &&
+    token &&
       (async function () {
         try {
           const response = await axios.get(
@@ -50,7 +50,7 @@ function App() {
           console.error(error.message);
         }
       })();
-  }, [dispatch, user]);
+  }, [dispatch, user, token]);
 
   return (
     <React.Fragment>
