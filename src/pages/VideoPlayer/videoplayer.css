@@ -1,0 +1,34 @@
+.video__player {
+  width: 100% !important;
+  height: 26rem !important;
+}
+
+.video--details {
+  position: relative;
+  padding: 0.5rem;
+}
+
+.user--actions {
+  display: flex;
+  gap: 2rem;
+  position: absolute;
+  top: 1rem;
+  right: 4%;
+}
+
+.icon--liked {
+  color: var(--primary);
+}
+
+.icon--save {
+  margin-left: 2rem;
+}
+
+@media screen and (max-width: 576px) {
+  .video__player {
+    height: 17rem !important;
+  }
+  .user--actions {
+    top: 0.5rem;
+  }
+}
